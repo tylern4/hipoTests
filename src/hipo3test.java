@@ -117,6 +117,7 @@ public class hipo3test {
 
             if (!event.hasGroup("REC::Scintillator")) continue;
             HipoGroup scint = event.getGroup("REC::Scintillator");
+
             if(particles.getNode( "charge").getByte(0) != -1) continue;
             eventNumber++;
             LorentzVector e_mu_prime = new LorentzVector();
@@ -130,7 +131,6 @@ public class hipo3test {
                     }
                 }
             }
-
             double p = NaN;
             if (energy != 0) {
                 final float px = particles.getNode("px").getFloat(0);
@@ -138,6 +138,7 @@ public class hipo3test {
                 final float pz = particles.getNode("pz").getFloat(0);
                 p = Math.sqrt(px * px + py * py + pz * pz);
             }
+            sf_elec.fill(p, energy / p);
 
             double e_vertex = NaN;
             for (int iscint = 0; iscint < scint.getMaxSize(); iscint++) {
@@ -153,10 +154,8 @@ public class hipo3test {
                 }
             }
 
-
-            if (particles.getNode("pid").getInt( 0) != 11) continue;
+            if ((energy / p) < 0.2 || (energy / p) >0.3) continue;
             w.fill(W(e_mu_prime));
-            sf_elec.fill(p, energy / p);
             wq2_elec.fill(W(e_mu_prime), Q2(e_mu_prime));
             LorentzVector pionP = new LorentzVector();
 
@@ -243,25 +242,40 @@ public class hipo3test {
         sf_elec.setTitleY("Sampling Fraction");
 
         can.cd(0);
-        can.draw(w);
-        can.cd(1);
-        w_cut.setFillColor(42);
-        can.draw(w_cut);
-        can.cd(2);
-        can.draw(missingMass);
-        missingMass_cut.setFillColor(42);
-        can.draw(missingMass_cut,"same");
-        can.cd(3);
         can.draw(sf_elec);
-        can.cd(4);
+        DataLine sf_lint_t = new DataLine(0,0.2,7.5,0.2);
+        sf_lint_t.setLineColor(44);
+        sf_lint_t.setLineWidth(4);
+        sf_lint_t.setLineStyle(2);
+        can.draw(sf_lint_t);
+        DataLine sf_lint_b = new DataLine(0,0.3,7.5,0.3);
+        sf_lint_b.setLineColor(44);
+        sf_lint_b.setLineWidth(4);
+        sf_lint_b.setLineStyle(2);
+        can.draw(sf_lint_b);
+        can.cd(1);
         can.draw(wq2_elec);
-        can.cd(5);
+        can.cd(2);
+        can.draw(w);
+        can.cd(3);
         can.draw(dt_pip_hist);
-        DataLine lint_t = new DataLine(0,0.5,4.5,0.5);
+        DataLine lint_t = new DataLine(0,0.5,5.5,0.5);
+        lint_t.setLineColor(44);
+        lint_t.setLineWidth(4);
+        lint_t.setLineStyle(2);
         can.draw(lint_t);
-        DataLine lint_b = new DataLine(0,-0.5,4.5,-0.5);
+        DataLine lint_b = new DataLine(0,-0.5,5.5,-0.5);
+        lint_b.setLineColor(44);
+        lint_b.setLineWidth(4);
+        lint_b.setLineStyle(2);
         can.draw(lint_b);
-
+        can.cd(4);
+        can.draw(missingMass);
+        missingMass_cut.setFillColor(44);
+        can.draw(missingMass_cut,"same");
+        can.cd(5);
+        w_cut.setFillColor(44);
+        can.draw(w_cut);
 
         watch.start();
         files.forEach(fil -> process(fil.toString()));
