@@ -78,8 +78,8 @@ int rootTest(std::string file = "test.root", double BEAM = 2.2) {
   clas12->SetBranchAddress("sc_ftof_1b_time", &sc_ftof_1b_time);
   clas12->SetBranchAddress("sc_ftof_1b_path", &sc_ftof_1b_path);
 
-  int num_of_events = (int)clas12->GetEntries();
-  for (int current_event = 0; current_event < num_of_events; current_event++) {
+  long num_of_events = (long)clas12->GetEntries();
+  for (long current_event = 0; current_event < num_of_events; current_event++) {
     if (current_event % 10000 == 0) std::cout << "\t" << (current_event * 100 / num_of_events) << "%\r\r" << std::flush;
     clas12->GetEntry(current_event);
     if (pid->size() == 0) continue;
@@ -165,9 +165,16 @@ int rootTest(std::string file = "test.root", double BEAM = 2.2) {
 #ifndef __CLING__
   TFile *outFile = new TFile("rootTest_output.root", "RECREATE");
   outFile->cd();
+  can->Write();
+  can->SaveAs("rootTest_analysis.png");
   wq2_elec->Write();
   w->Write();
-  can->Write();
+  w_cut->Write();
+  w_mm->Write();
+  missingMass->Write();
+  missingMass_cut->Write();
+  sf_elec->Write();
+  dt_pip_hist->Write();
   outFile->Write();
   outFile->Close();
 #endif

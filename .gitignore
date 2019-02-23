@@ -34,6 +34,10 @@
 # CMake
 build
 
+# Root
+*_cxx_*
+*.root
+
 # Java
 .idea
 out

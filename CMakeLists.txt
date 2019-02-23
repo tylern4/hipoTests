@@ -9,7 +9,7 @@ include(${ROOT_USE_FILE})
 set(CMAKE_MODULE_PATH
    ${CMAKE_MODULE_PATH}
    ${PROJECT_SOURCE_DIR}/cmake
-   ${HIPO_TOOLS}/lib/hipo)
+ $ENV{HIPO_TOOLS}/lib/hipo)
 
 include_directories("src")
 
@@ -17,7 +17,6 @@ include_directories("src")
 add_executable(rootTest src/rootTest.cxx)
 target_link_libraries(rootTest ${ROOT_LIBRARIES})
 install(TARGETS rootTest RUNTIME DESTINATION bin)
-
 
 find_package(Java)
 if(Java_FOUND)
