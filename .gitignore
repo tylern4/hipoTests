@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+# CMake
+build
+
+# Java
+.idea
+out
+*.iml
+META-INF
