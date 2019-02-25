@@ -57,6 +57,7 @@ All files from run 5700 copied to local computer for testing.
 
 
 All files, on HDD:
+
 |    Test   	| File Size 	|  Events processed 	|   Time (sec)   	| Events/Sec (Hz) 	|   kHz   	|
 |:---------:	|:---------:	|:-----------------:	|:--------------:	|:---------------:	|:-------:	|
 | hipo3test 	|   1.3TB   	| 49,252,490 Events 	| 13,465.422 Sec 	|    3,657.7 Hz   	|  ~ 4kHz 	|
@@ -64,6 +65,7 @@ All files, on HDD:
 
 
 Selection of 50 files, on SSD:
+
 |    Test   	| File Size 	| Events processed 	| Time (sec) 	| Events/Sec (Hz) 	|   kHz   	|
 |:---------:	|:---------:	|:----------------:	|:----------:	|:---------------:	|:-------:	|
 | hipo3test 	|    80GB   	| 3,041,806 Events 	| 644.25 Sec 	|    4,721.5 Hz   	|  ~ 5kHz 	|
