@@ -81,12 +81,13 @@ Selection of 50 files, on SSD:
 
 Currently inconclusive since there is only one file to test.
 
+```
 /work/clas12/jnp/clas_004152.recon.hipo
+```
 
-The file tested is also strange hipo in java says 1,253,842 events while the max events processed is 255,341 which is only 20% of the file.
-An event is only counted if the first particle is negative and therefore goes through some processing/histogram filling,
-the programs do not count events which are skipped.
+The file tested is also strange hipo in java says 1,253,842 events while the max events processed is 255,341 which is only 20% of the file. An event is only counted if the first particle is negative and therefore goes through some processing/histogram filling, the programs do not count events which are skipped.
 
+The files were converted using the same program but with different options. The first option saves all events in the file, the second option only saves events where the length of the reconstructed events is not 0, while the third option only saves events with a good identified electron as the first particle.
 
 | Conversion test           	| Time      	| Events/Sec 	| kHz     	|
 |---------------------------	|-----------	|------------	|---------	|
@@ -94,7 +95,7 @@ the programs do not count events which are skipped.
 | SSD (hipo4) (rec events)  	| 605.9 Sec 	| 2069.3 Hz  	| ~ 2kHz  	|
 | SSD (hipo4) (elec events) 	| 65.7 Sec  	| 19085.7 Hz 	| ~ 19kHz 	|
 
-Since the root file format is the same the
+Since the root file format is the same in both hipo3/hipo4 conversion the Events/Sec should be close to the same when reading a converted hipo3/hipo4 file however this is not the case. It would be better comparison to look at hipo3/hipo4 files for the same run but I only have one file availible for hipo4 testing and cannot find the hipo3 files for the same run.
 
 |          Test          	| File Size 	| Events Processed 	| Time (sec) 	| Events/Sec (Hz) 	|  kHz  	|
 |:----------------------:	|:---------:	|:----------------:	|:----------:	|:---------------:	|:-----:	|
