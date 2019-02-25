@@ -92,11 +92,10 @@ int rootTest(std::string file = "test.root", double BEAM = 2.2) {
     e_mu_prime.SetXYZM(px->at(0), py->at(0), pz->at(0), MASS_E);
     sf_elec->Fill(p->at(0), ec_tot_energy->at(0) / p->at(0));
 
-    double e_vertex = vertex_time(sc_ftof_1b_time->at(0), sc_ftof_1b_path->at(0), 1.0);
-
     if ((ec_tot_energy->at(0) / p->at(0)) < 0.2 || (ec_tot_energy->at(0) / p->at(0)) > 0.3) continue;
     wq2_elec->Fill(W_calc(e_mu_prime), Q2_calc(e_mu_prime));
     w->Fill(W_calc(e_mu_prime));
+    double e_vertex = vertex_time(sc_ftof_1b_time->at(0), sc_ftof_1b_path->at(0), 1.0);
 
     TLorentzVector *pionP = new TLorentzVector();
     int numpip = 0;
