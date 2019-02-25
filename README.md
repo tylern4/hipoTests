@@ -60,7 +60,7 @@ while events in files:
   Sampling_fraction_hist.Fill(momentum, Sampling_fraction)
 
   # Cut on Sampling_fraction to get good electrons
-  if (Sampling_fraction < 0.2 || Sampling_fraction > 0.3) continue;
+  if (Sampling_fraction < 0.2 or Sampling_fraction > 0.3) continue;
 
   # calculate and fill W and W vs Q2 hists
   wq2.Fill(W_calc(e_mu_prime), Q2_calc(e_mu_prime))
@@ -88,10 +88,10 @@ while events in files:
       dt_pip_hist.Fill(p(part), pip_dt)
 
     # Add one to the numpip if canidate Pi Plus is found else count
-    if abs(pip_dt) < 0.5 && charge(part) == 1:
-      numpip++;
+    if abs(pip_dt) < 0.5 and charge(part) == 1:
+      numpip += 1;
     else
-      numOther++;
+      numOther += 1;
 
   # If single Pi Plus found, fill in missing mass histogram and cut between 0.8 and 1.1 to get the desired reaction channel
   if numpip == 1 and numOther == 0:
