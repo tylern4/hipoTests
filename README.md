@@ -104,11 +104,11 @@ while events in files:
 
 #### Root Output
 
-![root results][root_results.png]
+![root results](root_results.png)
 
 #### Hipo Output
 
-![hipo results][hipo_results.png]
+![hipo results](hipo_results.png)
 
 ## Test setup
 
