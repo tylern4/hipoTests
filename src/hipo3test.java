@@ -283,7 +283,7 @@ public class hipo3test {
 		LOGGER.info(eventNumber / (watch.getTime() * 0.001) + " Hz");
 
 
-		can.save("analysis.png");
+		can.save("hipo_results.png");
 		System.exit(0);
 	}
 

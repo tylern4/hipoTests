@@ -102,6 +102,14 @@ while events in files:
       w_cut.Fill(W_calc(e_mu_prime))
 ```
 
+#### Root Output
+
+![root results][root_results.png]
+
+#### Hipo Output
+
+![hipo results][hipo_results.png]
+
 ## Test setup
 
 | Computer/software for testing           	|

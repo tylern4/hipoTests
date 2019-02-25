@@ -205,7 +205,7 @@ int rootTest(std::string file = "test.root", double BEAM = 2.2) {
   TFile *outFile = new TFile("rootTest_output.root", "RECREATE");
   outFile->cd();
   can->Write();
-  can->SaveAs("rootTest_analysis.png");
+  can->SaveAs("root_results.png");
   wq2_elec->Write();
   w->Write();
   w_cut->Write();
