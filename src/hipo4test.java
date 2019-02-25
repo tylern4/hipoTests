@@ -29,7 +29,6 @@ public class hipo4test {
 
     public final static LorentzVector e_mu = new LorentzVector(0.0,0.0, beamEnergy, beamEnergy);
     public final static LorentzVector p_mu = new LorentzVector(0.0,0.0,0.0, MASS_P);
-    public static HipoReader reader = new HipoReader();
 
     public static int eventNumber = 0;
     public static StopWatch watch = new StopWatch();
@@ -99,13 +98,13 @@ public class hipo4test {
     }
 
     public static void process(String filename){
+        HipoReader reader = new HipoReader();
         reader.open(filename);
         Event event = new Event();
         Bank particles = new Bank(reader.getSchemaFactory().getSchema("REC::Particle"));
         Bank calos = new Bank(reader.getSchemaFactory().getSchema("REC::Calorimeter"));
         Bank scint = new Bank(reader.getSchemaFactory().getSchema("REC::Scintillator"));
         Bank RecEv = new Bank(reader.getSchemaFactory().getSchema("REC::Event"));
-
         while(reader.hasNext()) {
             reader.nextEvent(event);
             event.read(particles);
@@ -220,7 +219,7 @@ public class hipo4test {
             LOGGER.debug(path);
             LOGGER.debug(beamEnergy);
         } else {
-            path = "/Users/tylern/Data/hipo/hipo4_test.hipo";
+            path = "/Users/tylern/Data/hipo/hipo4_*.hipo";
         }
 
 
