@@ -2,13 +2,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import org.jlab.clas.physics.LorentzVector;
-import org.jlab.detector.calib.utils.DatabaseConstantProvider;
 import org.jlab.groot.data.DataLine;
 import org.jlab.groot.data.H1F;
 
-import org.jlab.groot.graphics.EmbeddedCanvas;
 import org.jlab.groot.ui.TCanvas;
-import org.jlab.groot.ui.TGCanvas;
 import org.jlab.jnp.hipo.data.HipoEvent;
 import org.jlab.jnp.hipo.data.HipoGroup;
 import org.jlab.jnp.hipo.io.HipoReader;
@@ -18,7 +15,6 @@ import org.jlab.groot.data.H2F;
 
 import org.apache.commons.lang.time.StopWatch;
 
-import java.awt.*;
 import java.io.IOException;
 import java.nio.file.*;
 
@@ -37,7 +33,6 @@ public class hipo3test {
 
 	public final static LorentzVector e_mu = new LorentzVector(0.0,0.0, beamEnergy, beamEnergy);
 	public final static LorentzVector p_mu = new LorentzVector(0.0,0.0,0.0, MASS_P);
-	public static HipoReader reader = new HipoReader();
 
 	public static int eventNumber = 0;
 	public static StopWatch watch = new StopWatch();
@@ -107,6 +102,7 @@ public class hipo3test {
 	}
 
 	public static void process(String filename){
+		HipoReader reader = new HipoReader();
 		reader.open(filename);
 
 		while(reader.hasNext()) {
