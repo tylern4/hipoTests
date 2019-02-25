@@ -170,7 +170,7 @@ Since the root file format is the same in both hipo3/hipo4 conversion the Events
 
 |          Test          	| File Size 	| Events Processed 	| Time (sec) 	| Events/Sec (Hz) 	|  kHz  	|
 |:----------------------:	|:---------:	|:----------------:	|:----------:	|:---------------:	|:-----:	|
-|        hipo4Test       	|   2.2GB   	|      255,341     	|   7.9 Sec  	|    32,305 Hz     	| ~ 32kHz |
+|        hipo4Test       	|   2.2GB   	|      255,341     	|   12.3 Sec 	|    20,722.3 Hz   	| ~ 21kHz |
 |  rootTest (all events) 	|   2.3GB   	|      255,341     	|  32.1 Sec  	|    7952.3 Hz    	| ~ 8kHz  |
 |  rootTest (rec events) 	|   2.3GB   	|      255,341     	|  30.8 Sec  	|    8274.3 Hz    	| ~ 8kHz	|
 | rootTest (elec events) 	|   204MB   	|      111,543     	|  2.85 Sec  	|    39,121 Hz    	| ~ 39kHz	|
