@@ -66,6 +66,10 @@ int rootTest(std::string file = "test.root", double BEAM = 2.2) {
   e_mu.SetXYZT(0.0, 0.0, BEAM, BEAM);
   TLorentzVector e_mu_prime;
   int eventNumber = 0;
+  TCanvas *can = new TCanvas("can", "can", 1600, 900);
+  can->Divide(3, 2);
+  can->Modified();
+  can->Update();
   auto start_full = std::chrono::high_resolution_clock::now();
   clas12->Add(file.c_str());
   clas12->SetBranchAddress("pid", &pid);
@@ -122,14 +126,50 @@ int rootTest(std::string file = "test.root", double BEAM = 2.2) {
         w_cut->Fill(W_calc(e_mu_prime));
       }
     }
+#ifdef __CLING__
+    if (current_event % 50000 == 0) {
+      can->cd(1);
+      sf_elec->Draw("colz");
+      TLine *sf_lint_t = new TLine(0, 0.2, 7.5, 0.2);
+      sf_lint_t->SetLineColor(38);
+      sf_lint_t->SetLineWidth(4);
+      sf_lint_t->Draw("same");
+      TLine *sf_lint_b = new TLine(0, 0.3, 7.5, 0.3);
+      sf_lint_b->SetLineColor(38);
+      sf_lint_b->SetLineWidth(4);
+      sf_lint_b->Draw("same");
+      can->cd(2);
+      wq2_elec->Draw("colz");
+      can->cd(3);
+      w->Draw();
+      can->cd(4);
+      dt_pip_hist->Draw("colz");
+      TLine *lint_t = new TLine(0, 0.5, 5.5, 0.5);
+      lint_t->SetLineColor(38);
+      lint_t->SetLineWidth(4);
+      lint_t->Draw("same");
+      TLine *lint_b = new TLine(0, -0.5, 5.5, -0.5);
+      lint_b->SetLineColor(38);
+      lint_b->SetLineWidth(4);
+      lint_b->Draw("same");
+      can->cd(5);
+      missingMass->Draw();
+      missingMass_cut->SetFillColor(38);
+      missingMass_cut->Draw("same");
+      can->cd(6);
+      w_cut->SetFillColor(38);
+      w_cut->Draw();
+      can->Modified();
+      can->Update();
+      if (gSystem->ProcessEvents()) break;
+    }
+#endif
   }
 
   std::chrono::duration<double> elapsed_full = (std::chrono::high_resolution_clock::now() - start_full);
   std::cout << "Elapsed time for " << eventNumber << " events: " << elapsed_full.count() << " s" << std::endl;
   std::cout << "Events/Sec: " << (eventNumber / elapsed_full.count()) << " Hz" << std::endl;
 
-  TCanvas *can = new TCanvas("can", "can", 1600, 900);
-  can->Divide(3, 2);
   can->cd(1);
   sf_elec->Draw("colz");
   TLine *sf_lint_t = new TLine(0, 0.2, 7.5, 0.2);
