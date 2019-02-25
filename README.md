@@ -38,30 +38,33 @@ java -cp "hipo3test.jar:$CLAS12LIBS/*" hipo3test "/path/to/hipo3/files/*.hipo" b
 
 ## Test setup
 
-Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz
-4 Cores/8 Threads
-Hard Drive (3TB/7200rpm)
-SSD (128GB)
+| Computer/software for testing           	|
+|-----------------------------------------	|
+| Ubuntu 17.10                            	|
+| openjdk version "1.8.0_171"             	|
+| coat-libs-5.7.7-SNAPSHOT.jar            	|
+| ROOT 6.17/01                            	|
+| gcc (Ubuntu 7.2.0-8ubuntu3.2) 7.2.0     	|
+| Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz 	|
+| 4 Cores/8 Threads                       	|
+| HDD (3TB/7200rpm)                       	|
+| SSD (128GB)                             	|
 
 ## Results
-HDD
-1.3TB hipo files
-hipo3test 49,252,490 Events in 13,465.422 sec
-hipo3test 3,657.7 Hz
-4kHz
 
-136GB root files
-rootTest 49,752,570 Event in 3,727.85 sec
-rootTest 13,346.2 Hz
-13kHz
+Files originally from /work/clas12/clas12/data/calib/cooked_5p7p4_fullMap
+All files from run 5700 copied to local computer for testing.
 
-SSD
-80GB hipo files
-hipo3test 3,041,806 Events in 644.25 sec
-hipo3test 4,721.5 Hz
-5kHz
 
-8.5GB root files
-rootTest 3,072,249 Event in 166.23 sec
-rootTest 18,482.3 Hz
-18kHz
+All files, on HDD:
+|    Test   	| File Size 	|  Events processed 	|   Time (sec)   	| Events/Sec (Hz) 	|   kHz   	|
+|:---------:	|:---------:	|:-----------------:	|:--------------:	|:---------------:	|:-------:	|
+| hipo3test 	|   1.3TB   	| 49,252,490 Events 	| 13,465.422 Sec 	|    3,657.7 Hz   	|  ~ 4kHz 	|
+|  rootTest 	|   136GB   	| 49,752,570 Events 	|  3,727.85 sec  	|   13,346.2 Hz   	| ~ 13kHz 	|
+
+
+Selection of 50 files, on SSD:
+|    Test   	| File Size 	| Events processed 	| Time (sec) 	| Events/Sec (Hz) 	|   kHz   	|
+|:---------:	|:---------:	|:----------------:	|:----------:	|:---------------:	|:-------:	|
+| hipo3test 	|    80GB   	| 3,041,806 Events 	| 644.25 Sec 	|    4,721.5 Hz   	|  ~ 5kHz 	|
+|  rootTest 	|   8.5GB   	| 3,072,249 Events 	| 166.23 sec 	|   18,482.3 Hz   	| ~ 18kHz 	|
