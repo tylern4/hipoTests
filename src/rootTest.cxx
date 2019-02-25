@@ -169,6 +169,16 @@ int rootTest(std::string file = "test.root", double BEAM = 2.2) {
   std::cout << "Elapsed time for " << eventNumber << " events: " << elapsed_full.count() << " s" << std::endl;
   std::cout << "Events/Sec: " << (eventNumber / elapsed_full.count()) << " Hz" << std::endl;
 
+  w->SetXTitle("W (GeV)");
+  wq2_elec->SetXTitle("W (GeV)");
+  wq2_elec->SetYTitle("Q^2 (GeV^2)");
+  missingMass->SetXTitle("Mass (GeV)");
+  sf_elec->SetXTitle("Momentum  (GeV)");
+  sf_elec->SetYTitle("Sampling Fraction");
+  dt_pip_hist->SetXTitle("Momentum  (GeV)");
+  dt_pip_hist->SetYTitle("#Delta T");
+  w_cut->SetXTitle("W (GeV)");
+
   can->cd(1);
   sf_elec->Draw("colz");
   TLine *sf_lint_t = new TLine(0, 0.2, 7.5, 0.2);

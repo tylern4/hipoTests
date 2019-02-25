@@ -205,11 +205,11 @@ public class hipo3test {
 
 	public static void main(String[] args) {
 		GStyle.setPalette("kViridis");
-		GStyle.getAxisAttributesX().setTitleFontSize(32);
-		GStyle.getAxisAttributesY().setTitleFontSize(32);
-		GStyle.getAxisAttributesX().setLabelFontSize(24);
-		GStyle.getAxisAttributesY().setLabelFontSize(24);
-		GStyle.getAxisAttributesZ().setLabelFontSize(18);
+		GStyle.getAxisAttributesX().setTitleFontSize(16);
+		GStyle.getAxisAttributesY().setTitleFontSize(16);
+		GStyle.getAxisAttributesX().setLabelFontSize(16);
+		GStyle.getAxisAttributesY().setLabelFontSize(16);
+		GStyle.getAxisAttributesZ().setLabelFontSize(16);
 
 		String path;
 		if(args.length == 2) {
@@ -238,6 +238,11 @@ public class hipo3test {
 
 		sf_elec.setTitleX("Momentum  (GeV)");
 		sf_elec.setTitleY("Sampling Fraction");
+
+		dt_pip_hist.setTitleX("Momentum  (GeV)");
+		dt_pip_hist.setTitleY("#Delta T");
+
+		w_cut.setTitleX("W (GeV)");
 
 		can.cd(0);
 		can.draw(sf_elec);
