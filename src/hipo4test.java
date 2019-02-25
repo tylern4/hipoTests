@@ -126,13 +126,8 @@ public class hipo4test {
                     }
                 }
             }
-
-            double p = NaN;
             if (energy != 0) {
-                final float px = particles.getFloat("px",0);
-                final float py = particles.getFloat("py",0);
-                final float pz = particles.getFloat("pz",0);
-                p = Math.sqrt(px * px + py * py + pz * pz);
+                sf_elec.fill(e_mu_prime.p(), energy / e_mu_prime.p());
             }
 
             double e_vertex = NaN;
@@ -149,20 +144,16 @@ public class hipo4test {
                 }
             }
 
-
-            if (particles.getInt("pid",0) != 11) continue;
+            if ((energy / e_mu_prime.p()) < 0.2 || (energy / e_mu_prime.p()) >0.3) continue;
             w.fill(W(e_mu_prime));
-            sf_elec.fill(p, energy / p);
+            sf_elec.fill(e_mu_prime.p(), energy / e_mu_prime.p());
             wq2_elec.fill(W(e_mu_prime), Q2(e_mu_prime));
             LorentzVector pionP = new LorentzVector();
 
             int numpip = 0;
             int numOther = 0;
             for (int part = 1; part < particles.getRows(); part++) {
-                final float px = particles.getFloat("px",part);
-                final float py = particles.getFloat("py",part);
-                final float pz = particles.getFloat("pz",part);
-                pionP.setPxPyPzM(px,py,pz,MASS_PIP);
+                pionP.setPxPyPzM(particles.getFloat("px",part),particles.getFloat("py",part),particles.getFloat("pz",part),MASS_PIP);
 
                 double pip_dt = NaN;
                 if(particles.getByte("charge",part) == 1) {

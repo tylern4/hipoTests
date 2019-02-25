@@ -134,11 +134,10 @@ public class hipo3test {
 					}
 				}
 			}
-			double p = NaN;
+
 			if (energy != 0) {
 				sf_elec.fill(e_mu_prime.p(), energy / e_mu_prime.p());
 			}
-
 
 			double e_vertex = NaN;
 			for (int iscint = 0; iscint < scint.getMaxSize(); iscint++) {
@@ -154,7 +153,7 @@ public class hipo3test {
 				}
 			}
 
-			if ((energy / p) < 0.2 || (energy / p) >0.3) continue;
+			if ((energy / e_mu_prime.p()) < 0.2 || (energy / e_mu_prime.p()) >0.3) continue;
 			w.fill(W(e_mu_prime));
 			wq2_elec.fill(W(e_mu_prime), Q2(e_mu_prime));
 			LorentzVector pionP = new LorentzVector();
