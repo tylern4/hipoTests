@@ -79,4 +79,25 @@ Selection of 50 files, on SSD:
 
 ## hipo4 Results
 
-Currently inconclusive because I only have one file to test.
+Currently inconclusive since there is only one file to test.
+
+/work/clas12/jnp/clas_004152.recon.hipo
+
+The file tested is also strange hipo in java says 1,253,842 events while the max events processed is 255,341 which is only 20% of the file.
+An event is only counted if the first particle is negative and therefore goes through some processing/histogram filling,
+the programs do not count events which are skipped.
+
+
+| Conversion test           	| Time      	| Events/Sec 	| kHz     	|
+|---------------------------	|-----------	|------------	|---------	|
+| SSD (hipo4) (all events)  	| 584.2 Sec 	| 2146.4 Hz  	| ~ 2.1kHz  |
+| SSD (hipo4) (rec events)  	| 605.9 Sec 	| 2069.3 Hz  	| ~ 2kHz  	|
+| SSD (hipo4) (elec events) 	| 65.7 Sec  	| 19085.7 Hz 	| ~ 19kHz 	|
+
+
+|          Test          	| File Size 	| Events Processed 	| Time (sec) 	| Events/Sec (Hz) 	|  kHz  	|
+|:----------------------:	|:---------:	|:----------------:	|:----------:	|:---------------:	|:-----:	|
+|        hipo4Test       	|   2.2GB   	|      255,341     	|   4.4 Sec  	|    57,522 Hz    	| 57kHz 	|
+|  rootTest (all events) 	|   2.3GB   	|      255,341     	|  32.1 Sec  	|    7952.3 Hz    	|  8kHz 	|
+|  rootTest (rec events) 	|   2.3GB   	|      255,341     	|  30.8 Sec  	|    8274.3 Hz    	|  8kHz 	|
+| rootTest (elec events) 	|   204MB   	|      111,543     	|  2.85 Sec  	|    39,121 Hz    	| 39kHz 	|
