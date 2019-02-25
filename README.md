@@ -25,6 +25,12 @@ docker run --rm -it -v $PWD:/data tylern4/hipo_tools dst2root_3 /data/file.hipo
 Where file.hipo is in the current folder.
 Make sure to append '/data/' to the file so that docker can find the file and convert it.
 
+
+| Conversion test 	| Time     	| Events/Sec 	| kHz      	|
+|-----------------	|----------	|------------	|----------	|
+| HDD (hipo3)     	| 75.2 Sec 	| 1390.5 Hz  	| ~ 1.4kHz 	|
+| SSD (hipo3)     	| 54.4 Sec 	| 1922.9 Hz  	| ~ 2kHz   	|
+
 ## Running Tests
 
 To run java tests:
@@ -50,7 +56,7 @@ java -cp "hipo3test.jar:$CLAS12LIBS/*" hipo3test "/path/to/hipo3/files/*.hipo" b
 | HDD (3TB/7200rpm)                       	|
 | SSD (128GB)                             	|
 
-## Results
+## hipo3 Results
 
 Files originally from /work/clas12/clas12/data/calib/cooked_5p7p4_fullMap
 All files from run 5700 copied to local computer for testing.
@@ -70,3 +76,7 @@ Selection of 50 files, on SSD:
 |:---------:	|:---------:	|:----------------:	|:----------:	|:---------------:	|:-------:	|
 | hipo3test 	|    80GB   	| 3,041,806 Events 	| 644.25 Sec 	|    4,721.5 Hz   	|  ~ 5kHz 	|
 |  rootTest 	|   8.5GB   	| 3,072,249 Events 	| 166.23 sec 	|   18,482.3 Hz   	| ~ 18kHz 	|
+
+## hipo4 Results
+
+Currently inconclusive because I only have one file to test.
