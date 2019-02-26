@@ -13,6 +13,21 @@ make
 
 This will build the jar file for hipo3test/hipo4test as well as the rootTest.
 
+## Test setup
+
+| Computer/software for testing           	|
+|-----------------------------------------	|
+| Ubuntu 17.10                            	|
+| openjdk version "1.8.0_171"             	|
+| coat-libs-5.7.7-SNAPSHOT.jar            	|
+| ROOT 6.17/01                            	|
+| gcc (Ubuntu 7.2.0-8ubuntu3.2) 7.2.0     	|
+| Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz 	|
+| 4 Cores/8 Threads                       	|
+| HDD (3TB/7200rpm)                       	|
+| SSD (128GB)                             	|
+
+
 ## Getting the root files
 Files were converted with dst2root_3 which can be found and built using the [hipo_tools](https://github.com/JeffersonLab/hipo_tools) package.
 
@@ -26,10 +41,12 @@ Where file.hipo is in the current folder.
 Make sure to append '/data/' to the file so that docker can find the file and convert it.
 
 
-| Conversion test 	| Time     	| Events/Sec 	| kHz      	|
-|-----------------	|----------	|------------	|----------	|
-| HDD (hipo3)     	| 75.2 Sec 	| 1390.5 Hz  	| ~ 1.4kHz 	|
-| SSD (hipo3)     	| 54.4 Sec 	| 1922.9 Hz  	| ~ 2kHz   	|
+| Conversion test 	| Time     	  | Events/Sec 	| kHz      	|
+|-----------------	|----------	  |------------	|----------	|
+| HDD (hipo3)     	| 75.2 Sec 	  | 1390.5 Hz  	| ~ 1.4kHz 	|
+| SSD (hipo3)     	| 54.4 Sec 	  | 1922.9 Hz  	| ~ 2kHz   	|
+| SSD (hipo3/skim)  | 1290.8 Sec 	| 5560.75 Hz  | ~ 5.5kHz  |
+
 
 ## Running Tests
 
@@ -110,20 +127,6 @@ while events in files:
 
 ![hipo results](hipo_results.png)
 
-## Test setup
-
-| Computer/software for testing           	|
-|-----------------------------------------	|
-| Ubuntu 17.10                            	|
-| openjdk version "1.8.0_171"             	|
-| coat-libs-5.7.7-SNAPSHOT.jar            	|
-| ROOT 6.17/01                            	|
-| gcc (Ubuntu 7.2.0-8ubuntu3.2) 7.2.0     	|
-| Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz 	|
-| 4 Cores/8 Threads                       	|
-| HDD (3TB/7200rpm)                       	|
-| SSD (128GB)                             	|
-
 ## hipo3 Results
 
 Files originally from /work/clas12/clas12/data/calib/cooked_5p7p4_fullMap
@@ -146,7 +149,16 @@ Selection of 50 files, on SSD:
 | hipo3test (1 core)	|    80GB   	| 3,041,806 Events 	| 865.46 Sec 	|    3,514.7 Hz   	|  ~ 4kHz 	|
 |  rootTest 	        |   8.5GB   	| 3,072,249 Events 	| 160.1 sec 	|   19,573.5 Hz   	| ~ 20kHz 	|
 
-Java example seemed to be using over 100% of the cpu so tests were re-run using taskset for the 1 core results since root program used one one core.
+Skimmed file for run 4013:
+
+|    Test   	        | File Size 	| Events processed 	| Time (sec) 	| Events/Sec (Hz) 	|   kHz   	|
+|:------------------:	|:---------:	|:----------------:	|:----------:	|:---------------:	|:-------:	|
+| hipo3test 	        |    14GB   	| 7,176,505 Events 	| 321.9 Sec 	|   30,950.8 Hz   	|  ~ 31kHz 	|
+| hipo3test (1 core)	|    14GB   	| 7,176,505 Events 	| 345.3 Sec 	|   20,784.6 Hz   	|  ~ 21kHz 	|
+|  rootTest 	        |    13GB     | 7,176,506 Events 	| 205.9 sec 	|   34,838.8 Hz   	|  ~ 35kHz 	|
+
+
+Java examples were using over 100% of the cpu (ie. multiple java threads) so tests were re-run using taskset for the 1 core results.
 
 ## hipo4 Results
 
@@ -160,17 +172,17 @@ The file tested is also strange hipo in java says 1,253,842 events while the max
 
 The files were converted using the same program but with different options. The first option saves all events in the file, the second option only saves events where the length of the reconstructed events is not 0, while the third option only saves events with a good identified electron as the first particle.
 
-| Conversion test           	| Time      	| Events/Sec 	| kHz     	|
-|---------------------------	|-----------	|------------	|---------	|
-| SSD (hipo4) (all events)  	| 584.2 Sec 	| 2146.4 Hz  	| ~ 2.1kHz  |
-| SSD (hipo4) (rec events)  	| 605.9 Sec 	| 2069.3 Hz  	| ~ 2kHz  	|
-| SSD (hipo4) (elec events) 	| 65.7 Sec  	| 19085.7 Hz 	| ~ 19kHz 	|
+| Conversion test           	| Time      	| Events/Sec 	  | kHz     	|
+|---------------------------	|-----------	|------------	  |---------	|
+| SSD (hipo4) (all events)  	| 584.2 Sec 	| 2,146.4 Hz  	| ~ 2.1kHz  |
+| SSD (hipo4) (rec events)  	| 437.2 Sec 	| 2,867.9 Hz  	| ~ 3kHz  	|
+| SSD (hipo4) (elec events) 	| 65.7 Sec  	| 19,085.7 Hz 	| ~ 19kHz 	|
 
 Since the root file format is the same in both hipo3/hipo4 conversion the Events/Sec should be close to the same when reading a converted hipo3/hipo4 file however this is not the case. It would be better comparison to look at hipo3/hipo4 files for the same run but I only have one file available for hipo4 testing and cannot find the hipo3 files for the same run.
 
 |          Test          	| File Size 	| Events Processed 	| Time (sec) 	| Events/Sec (Hz) 	|  kHz  	|
 |:----------------------:	|:---------:	|:----------------:	|:----------:	|:---------------:	|:-----:	|
-|        hipo4Test       	|   2.2GB   	|      255,341     	|   12.3 Sec 	|    20,722 Hz      | ~ 21kHz |
+|        hipo4Test       	|   2.2GB   	|      255,341     	|  12.3 Sec 	|    20,722 Hz      | ~ 21kHz |
 |  rootTest (all events) 	|   2.3GB   	|      255,341     	|  32.1 Sec  	|    7952.3 Hz    	| ~ 8kHz  |
-|  rootTest (rec events) 	|   2.3GB   	|      255,341     	|  30.8 Sec  	|    8274.3 Hz    	| ~ 8kHz	|
-| rootTest (elec events) 	|   204MB   	|      111,543     	|  2.85 Sec  	|    39,121 Hz    	| ~ 39kHz	|
+|  rootTest (rec events) 	|   2.3GB   	|      255,341     	|  24.5 Sec  	|    10,398.7 Hz    | ~ 10kHz	|
+| rootTest (elec events) 	|   204MB   	|      111,543     	|  2.38 Sec  	|    46,791.7 Hz    | ~ 47kHz	|
