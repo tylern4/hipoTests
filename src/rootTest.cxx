@@ -70,6 +70,17 @@ int rootTest(std::string file = "test.root", double BEAM = 2.2) {
   can->Divide(3, 2);
   can->Modified();
   can->Update();
+
+  w->SetXTitle("W (GeV)");
+  wq2_elec->SetXTitle("W (GeV)");
+  wq2_elec->SetYTitle("Q^2 (GeV^2)");
+  missingMass->SetXTitle("Mass (GeV)");
+  sf_elec->SetXTitle("Momentum  (GeV)");
+  sf_elec->SetYTitle("Sampling Fraction");
+  dt_pip_hist->SetXTitle("Momentum  (GeV)");
+  dt_pip_hist->SetYTitle("#Delta T");
+  w_cut->SetXTitle("W (GeV)");
+
   auto start_full = std::chrono::high_resolution_clock::now();
   clas12->Add(file.c_str());
   clas12->SetBranchAddress("pid", &pid);
@@ -169,16 +180,6 @@ int rootTest(std::string file = "test.root", double BEAM = 2.2) {
   std::chrono::duration<double> elapsed_full = (std::chrono::high_resolution_clock::now() - start_full);
   std::cout << "Elapsed time for " << eventNumber << " events: " << elapsed_full.count() << " s" << std::endl;
   std::cout << "Events/Sec: " << (eventNumber / elapsed_full.count()) << " Hz" << std::endl;
-
-  w->SetXTitle("W (GeV)");
-  wq2_elec->SetXTitle("W (GeV)");
-  wq2_elec->SetYTitle("Q^2 (GeV^2)");
-  missingMass->SetXTitle("Mass (GeV)");
-  sf_elec->SetXTitle("Momentum  (GeV)");
-  sf_elec->SetYTitle("Sampling Fraction");
-  dt_pip_hist->SetXTitle("Momentum  (GeV)");
-  dt_pip_hist->SetYTitle("#Delta T");
-  w_cut->SetXTitle("W (GeV)");
 
   can->cd(1);
   sf_elec->Draw("colz");
