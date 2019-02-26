@@ -43,9 +43,9 @@ Make sure to append '/data/' to the file so that docker can find the file and co
 
 | Conversion test 	| Time     	  | Events/Sec 	| kHz      	|
 |-----------------	|----------	  |------------	|----------	|
-| HDD (hipo3)     	| 75.2 Sec 	  | 1390.5 Hz  	| ~ 1.4kHz 	|
-| SSD (hipo3)     	| 54.4 Sec 	  | 1922.9 Hz  	| ~ 2kHz   	|
-| SSD (hipo3/skim)  | 1290.8 Sec 	| 5560.75 Hz  | ~ 5.5kHz  |
+| HDD (hipo3)     	| 32.4 Sec 	  | 3228.4 Hz  	| ~ 3.2 kHz |
+| SSD (hipo3)     	| 31.7 Sec 	  | 3305.2 Hz  	| ~ 3.3 kHz	|
+| SSD (hipo3/skim)  | 1258.7 Sec 	| 5702.5 Hz   | ~ 5.7 kHz |
 
 
 ## Running Tests
@@ -172,17 +172,17 @@ The file tested is also strange hipo in java says 1,253,842 events while the max
 
 The files were converted using the same program but with different options. The first option saves all events in the file, the second option only saves events where the length of the reconstructed events is not 0, while the third option only saves events with a good identified electron as the first particle.
 
-| Conversion test           	| Time      	| Events/Sec 	  | kHz     	|
-|---------------------------	|-----------	|------------	  |---------	|
-| SSD (hipo4) (all events)  	| 584.2 Sec 	| 2,146.4 Hz  	| ~ 2.1kHz  |
-| SSD (hipo4) (rec events)  	| 437.2 Sec 	| 2,867.9 Hz  	| ~ 3kHz  	|
-| SSD (hipo4) (elec events) 	| 65.7 Sec  	| 19,085.7 Hz 	| ~ 19kHz 	|
+| Conversion test           	| Time      	| Events/Sec 	  | kHz     	 |
+|---------------------------	|-----------	|------------	  |---------	 |
+| SSD (hipo4) (all events)  	| 584.2 Sec 	| 2,146.4 Hz  	| ~ 2.1 kHz  |
+| SSD (hipo4) (rec events)  	| 435.2 Sec 	| 2,880.6 Hz  	| ~ 3 kHz  	 |
+| SSD (hipo4) (elec events) 	| 41.4 Sec  	| 2,696.2 Hz 	  | ~ 2.6 kHz  |
 
 Since the root file format is the same in both hipo3/hipo4 conversion the Events/Sec should be close to the same when reading a converted hipo3/hipo4 file however this is not the case. It would be better comparison to look at hipo3/hipo4 files for the same run but I only have one file available for hipo4 testing and cannot find the hipo3 files for the same run.
 
 |          Test          	| File Size 	| Events Processed 	| Time (sec) 	| Events/Sec (Hz) 	|  kHz  	|
 |:----------------------:	|:---------:	|:----------------:	|:----------:	|:---------------:	|:-----:	|
-|        hipo4Test       	|   2.2GB   	|      255,341     	|  12.3 Sec 	|    20,722 Hz      | ~ 21kHz |
-|  rootTest (all events) 	|   2.3GB   	|      255,341     	|  32.1 Sec  	|    7952.3 Hz    	| ~ 8kHz  |
-|  rootTest (rec events) 	|   2.3GB   	|      255,341     	|  24.5 Sec  	|    10,398.7 Hz    | ~ 10kHz	|
-| rootTest (elec events) 	|   204MB   	|      111,543     	|  2.38 Sec  	|    46,791.7 Hz    | ~ 47kHz	|
+|        hipo4Test       	|   2.2GB   	|      255,341     	|  12.3 Sec 	|    20,722 Hz      | ~ 21 kHz  |
+|  rootTest (all events) 	|   2.3GB   	|      255,341     	|  32.1 Sec  	|    7952.3 Hz    	| ~ 8 kHz   |
+|  rootTest (rec events) 	|   2.3GB   	|      255,341     	|  24.5 Sec  	|    10,398.7 Hz    | ~ 10 kHz	|
+| rootTest (elec events) 	|   204MB   	|      111,543     	|  2.38 Sec  	|    46,791.7 Hz    | ~ 47 kHz	|
