@@ -5,6 +5,8 @@ import org.jlab.clas.physics.LorentzVector;
 import org.jlab.groot.data.DataLine;
 import org.jlab.groot.data.H1F;
 
+import org.jlab.groot.data.TDirectory;
+import org.jlab.groot.graphics.EmbeddedCanvas;
 import org.jlab.groot.ui.TCanvas;
 import org.jlab.jnp.hipo.data.HipoEvent;
 import org.jlab.jnp.hipo.data.HipoGroup;
@@ -15,6 +17,7 @@ import org.jlab.groot.data.H2F;
 
 import org.apache.commons.lang.time.StopWatch;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.nio.file.*;
 
@@ -37,14 +40,14 @@ public class hipo3test {
 	public static int eventNumber = 0;
 	public static StopWatch watch = new StopWatch();
 
-	public static H1F w = new H1F("hist", 500, 0, 4.0);
-	public static H1F w_cut = new H1F("hist", 250, 0, 4.0);
-	public static H2F wq2_elec = new H2F("hist", 500, 0, 4.0, 500, 0, 2.5);
-	public static H2F w_mm = new H2F("hist", 500, 0, 4.0, 500, 0, 3);
+	public static H1F w = new H1F("w", 500, 0, 4.0);
+	public static H1F w_cut = new H1F("w_cut", 250, 0, 4.0);
+	public static H2F wq2_elec = new H2F("wq2_elec", 500, 0, 4.0, 500, 0, 2.5);
+	public static H2F w_mm = new H2F("w_mm", 500, 0, 4.0, 500, 0, 3);
 	public static H1F missingMass = new H1F("MissingMass",200,0,5.5);
-	public static H1F missingMass_cut = new H1F("MissingMass",200,0,5.5);
+	public static H1F missingMass_cut = new H1F("MissingMass_cut",200,0,5.5);
 	public static H2F sf_elec = new H2F("sf_elec",200,0,7.5,200,0.0,0.5);
-	public static H2F dt_pip_hist = new H2F("sf_elec",200,0,5.5,200,-5.0,5.0);
+	public static H2F dt_pip_hist = new H2F("dt_pip_hist",200,0,5.5,200,-5.0,5.0);
 
 
 	static Stream glob(String mask) {
@@ -219,11 +222,16 @@ public class hipo3test {
 
 		Stream files= glob(path);
 
-		TCanvas can = new TCanvas("W vs Q^2", 1200, 800);
-		can.getCanvas().initTimer(1000);
+		JFrame frame = new JFrame("Basic GROOT Demo");
+		frame.setSize(1600,900);
+		EmbeddedCanvas can = new EmbeddedCanvas();
 
-		can.getPad().setOptStat(11111);
 		can.divide(3,2);
+		can.initTimer(1000);
+		frame.add(can);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(false);
+
 		w.setTitleX("W (GeV)");
 
 		wq2_elec.setTitleX("W (GeV)");
@@ -270,7 +278,7 @@ public class hipo3test {
 		can.cd(4);
 		can.draw(missingMass);
 		missingMass_cut.setFillColor(44);
-		can.draw(missingMass_cut,"same");
+		can.draw(missingMass_cut, "same");
 		can.cd(5);
 		w_cut.setFillColor(44);
 		can.draw(w_cut);
@@ -281,7 +289,6 @@ public class hipo3test {
 
 		LOGGER.info(eventNumber + " Events in " + watch.getTime() * 0.001 + " sec");
 		LOGGER.info(eventNumber / (watch.getTime() * 0.001) + " Hz");
-
 
 		can.save("hipo_results.png");
 		System.exit(0);

@@ -153,7 +153,7 @@ Skimmed file for run 4013:
 
 |    Test   	        | File Size 	| Events processed 	| Time (sec) 	| Events/Sec (Hz) 	|   kHz   	|
 |:------------------:	|:---------:	|:----------------:	|:----------:	|:---------------:	|:-------:	|
-| hipo3test 	        |    14GB   	| 7,176,505 Events 	| 321.9 Sec 	|   30,950.8 Hz   	|  ~ 31kHz 	|
+| hipo3test 	        |    14GB   	| 7,176,505 Events 	| 231.9 Sec 	|   30,950.8 Hz   	|  ~ 31kHz 	|
 | hipo3test (1 core)	|    14GB   	| 7,176,505 Events 	| 345.3 Sec 	|   20,784.6 Hz   	|  ~ 21kHz 	|
 |  rootTest 	        |    13GB     | 7,176,506 Events 	| 205.9 sec 	|   34,838.8 Hz   	|  ~ 35kHz 	|
 
